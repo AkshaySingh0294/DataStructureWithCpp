@@ -4,6 +4,7 @@
 #include "SortModel/insertionsort.h"
 #include "SortModel/mergesort_arraybased.h"
 #include "SortModel/mergesort_linkiedlistbased.h"
+#include "SortModel/mergesort_doublylinkedlist.h"
 
 
 class SortingController

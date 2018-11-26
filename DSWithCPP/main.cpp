@@ -7,6 +7,6 @@ using namespace std;
 int main()
 {
     SortingController *sort = new SortingController;
-    PractiseSpace *practise = new PractiseSpace;
+//    PractiseSpace *practise = new PractiseSpace;
     return 0;
 }
