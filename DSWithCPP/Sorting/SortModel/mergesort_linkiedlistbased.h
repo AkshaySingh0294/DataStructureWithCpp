@@ -1,12 +1,9 @@
 #ifndef MERGESORT_LINKIEDLISTBASED_H
 #define MERGESORT_LINKIEDLISTBASED_H
 #include <iostream>
+#include "nodedefinition.h"
 using namespace std;
 
-struct node{
-    int data;
-    node *next;
-};
 class MergeSort_LinkiedListBased
 {
 public:

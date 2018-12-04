@@ -6,4 +6,9 @@ struct dlNode{
     dlNode *previous;
 };
 
+struct node{
+    int data;
+    node *next;
+};
+
 #endif // NODEDEFINITION_H
