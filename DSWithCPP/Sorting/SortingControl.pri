@@ -5,7 +5,6 @@ HEADERS += \
     $$PWD/SortModel/mergesort_arraybased.h \
     $$PWD/SortModel/mergesort_linkiedlistbased.h \
     $$PWD/SortModel/mergesort_doublylinkedlist.h \
-    $$PWD/SortModel/nodedefinition.h \
     $$PWD/SortModel/quicksort_array.h
 
 SOURCES += \

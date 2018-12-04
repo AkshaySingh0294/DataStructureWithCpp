@@ -2,11 +2,13 @@
 #include <string>
 #include "Sorting/sortingcontroller.h"
 #include "PractiseSpace/Practise/practisespace.h"
+#include "LinkedListControl/linkedlistcontroller.h"
 using namespace std;
 
 int main()
 {
-    SortingController *sort = new SortingController;
+//    SortingController *sort = new SortingController;
 //    PractiseSpace *practise = new PractiseSpace;
+    LinkedListController *linkedListControlle = new LinkedListController;
     return 0;
 }

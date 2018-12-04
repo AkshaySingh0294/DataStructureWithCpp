@@ -1,6 +1,6 @@
 #ifndef MERGESORT_DOUBLYLINKEDLIST_H
 #define MERGESORT_DOUBLYLINKEDLIST_H
-#include "nodedefinition.h"
+#include "DefinitionControl/Definitions/nodedefinition.h"
 #include <iostream>
 using namespace std;
 

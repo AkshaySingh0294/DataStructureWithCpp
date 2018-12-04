@@ -1,7 +1,7 @@
 #ifndef MERGESORT_LINKIEDLISTBASED_H
 #define MERGESORT_LINKIEDLISTBASED_H
 #include <iostream>
-#include "nodedefinition.h"
+#include "DefinitionControl/Definitions/nodedefinition.h"
 using namespace std;
 
 class MergeSort_LinkiedListBased

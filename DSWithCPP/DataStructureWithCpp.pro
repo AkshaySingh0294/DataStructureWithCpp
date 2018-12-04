@@ -11,4 +11,6 @@ HEADERS +=
 DISTFILES +=
 
 include (Sorting/SortingControl.pri)
+include (DefinitionControl/DefinitionControl.pri)
+include (LinkedListControl/LinkedListControl.pri)
 include (PractiseSpace/PractiseControl.pri)
