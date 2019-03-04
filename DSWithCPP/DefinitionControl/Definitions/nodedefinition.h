@@ -11,4 +11,10 @@ struct node{
     node *next;
 };
 
+struct tree{
+    int info;
+    tree *left;
+    tree *right;
+};
+
 #endif // NODEDEFINITION_H

@@ -3,6 +3,7 @@
 
 #include <iostream>
 using namespace std;
+#include "LinkedListControl/Operations/basicoperations.h"
 
 class LinkedListController
 {
