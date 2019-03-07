@@ -17,4 +17,10 @@ struct tree{
     tree *right;
 };
 
+struct dTree{
+    int key;
+    int count;
+    dTree *left, *right;
+};
+
 #endif // NODEDEFINITION_H

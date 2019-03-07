@@ -2,5 +2,6 @@
 
 TreeController::TreeController()
 {
-    BasicTreeOperation *basicTreeOperation = new BasicTreeOperation;
+    //    BasicTreeOperation *basicTreeOperation = new BasicTreeOperation;
+    DuplicationHandlingTree *duplicationHandlingTree = new DuplicationHandlingTree;
 }

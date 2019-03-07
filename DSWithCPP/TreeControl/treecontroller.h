@@ -2,6 +2,8 @@
 #define TREECONTROLLER_H
 
 #include "Tree/basictreeoperation.h"
+#include "Tree/duplicationhandlingtree.h"
+
 class TreeController
 {
 public:
