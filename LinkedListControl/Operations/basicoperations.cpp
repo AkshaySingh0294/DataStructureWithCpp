@@ -2,27 +2,17 @@
 
 BasicOperations::BasicOperations()
 {
-    dlC = new DoubleLinkedListCreation;
-    slC = new SingleLinkedListCreation;
-    int array[10] = {10,9,8,7,6,5,4,3,2,1};
-    dlNode *dHead = new dlNode;
-    dlNode *dTail = new dlNode;
+    singleOperation();
+//    doubleOperation();
+}
 
+void BasicOperations::singleOperation()
+{
+    slC = new SingleLinkedListCreation;
+    int array[10] = {10,9,8,7,6,6,7,8,9,10};
     node *sHead = new node;
     node *sTail = new node;
-
-    dHead = dTail = nullptr;
     sHead = sTail = nullptr;
-    //Double linked list creation
-    for(int i : array)
-    {
-        dTail = dlC->addToDll(dTail,i);
-        if(dHead == nullptr)
-        {
-            dHead = dTail;
-        }
-    }
-
     //Single linked list creation
     for(int i : array)
     {
@@ -32,34 +22,45 @@ BasicOperations::BasicOperations()
             sHead = sTail;
         }
     }
-
-    showDl(dHead);
     showSl(sHead);
-
-    insertionAtDLFront(&dHead,100);
     insertionAtSlFront(&sHead,100);
-
-    showDl(dHead);
     showSl(sHead);
-
-    insertionAtDLEnd(&dHead,&dTail,100);
     insertionAtSlEnd(&sHead,&sTail,100);
-
-    showDl(dHead);
     showSl(sHead);
+    //    deleteSingleLinkedList(&sHead);
+    //    createLoopInSL(&sHead, &sTail);
+    //    detectLoop(&sHead);
+    //    palindromeCheckSLL(sHead);
+    node *ptr = sHead;
+    palindromeCheckRecursiveSSL(ptr, ptr);
+    showSl(sHead);
+}
 
+void BasicOperations::doubleOperation()
+{
+    dlC = new DoubleLinkedListCreation;
+    dlNode *dHead = new dlNode;
+    dlNode *dTail = new dlNode;
+    dHead = dTail = nullptr;
+    //Double linked list creation
+    int array[11] = {10,9,8,7,6,5,6,7,8,9,10};
+    for(int i : array)
+    {
+        dTail = dlC->addToDll(dTail,i);
+        if(dHead == nullptr)
+        {
+            dHead = dTail;
+        }
+    }
+    showDl(dHead);
+    insertionAtDLFront(&dHead,100);
+    showDl(dHead);
+    insertionAtDLEnd(&dHead,&dTail,100);
+    showDl(dHead);
     insertionAtDLGivenNode(&dHead,&dTail,99999,13);
     showDl(dHead);
-
-    //    deleteSingleLinkedList(&sHead);
     //    deleteDoubleLinkedList(&dHead);
     //    showDl(dHead);
-
-    createLoopInSL(&sHead, &sTail);
-    detectLoop(&sHead);
-    showSl(sHead);
-
-
 }
 
 void BasicOperations::insertionAtDLFront(dlNode **head, int num)
@@ -216,6 +217,49 @@ void BasicOperations::fixLoopinSL(node **head)
             nodeList.push_front(backPtr);
         }
     }
+}
+
+void BasicOperations::palindromeCheckSLL(node *head)
+{
+    int array[13];
+    node *ptr = head;
+    int count = 0;
+    while(ptr != nullptr)
+    {
+        array[count++] = ptr->data;
+        ptr = ptr->next;
+    }
+    ptr = head;
+    --count;
+    while(ptr != nullptr){
+        if(array[count--] != ptr->data)
+        {
+            cout<<"Not a palindrome";
+            return;
+        }
+        ptr = ptr->next;
+    }
+    cout<<"Is Palindrome";
+}
+
+node* BasicOperations::palindromeCheckRecursiveSSL(node *left, node *right)
+{
+    if(right != nullptr){
+        left = palindromeCheckRecursiveSSL(left, right->next);
+        if(left->data == right->data){
+            left = left->next;
+            if(left == nullptr)
+            {
+                cout<<"Its a palindrome"<<endl;
+            }
+            return left;
+        }
+        else{
+            cout<<"Its not a palindrom"<<endl;
+            return nullptr;
+        }
+    }
+    return left;
 }
 
 void BasicOperations::showDl(dlNode *head)

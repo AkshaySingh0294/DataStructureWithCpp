@@ -12,12 +12,14 @@ public:
     BasicOperations();
 
     //For Double Linked List
+    void doubleOperation();
     void insertionAtDLFront(dlNode **head, int num);
     void insertionAtDLGivenNode(dlNode **head, dlNode **tail, int num, int pos);    //starts from 0th position
     void insertionAtDLEnd(dlNode **head, dlNode **tail, int num);
     void deleteDoubleLinkedList(dlNode **head);
 
     //For Single Linked list
+    void singleOperation();
     void insertionAtSlFront(node **head, int num);
     void insertionAtSlGivenNode(node **head, int num);
     void insertionAtSlEnd(node **head, node **tail, int num);
@@ -25,6 +27,8 @@ public:
     void createLoopInSL(node **head, node **tail);
     void detectLoop(node **head);
     void fixLoopinSL(node **head);
+    void palindromeCheckSLL(node *head);
+    node *palindromeCheckRecursiveSSL(node *left, node *right);
 
     //Show array
     void showDl(dlNode *head);
