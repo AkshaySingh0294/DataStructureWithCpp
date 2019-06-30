@@ -10,7 +10,7 @@ int main()
 {
 //    SortingController *sort = new SortingController;
 //    PractiseSpace *practise = new PractiseSpace;
-//    LinkedListController *linkedListControlle = new LinkedListController;
-    TreeController * treeController = new TreeController;
+    LinkedListController *linkedListControlle = new LinkedListController;
+//    TreeController * treeController = new TreeController;
     return 0;
 }

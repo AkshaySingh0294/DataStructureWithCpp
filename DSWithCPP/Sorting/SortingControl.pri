@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/SortModel/bubblesort.h \
     $$PWD/sortingcontroller.h \
     $$PWD/SortModel/selectionsort.h \
     $$PWD/SortModel/insertionsort.h \
@@ -8,6 +9,7 @@ HEADERS += \
     $$PWD/SortModel/quicksort_array.h
 
 SOURCES += \
+    $$PWD/SortModel/bubblesort.cpp \
     $$PWD/sortingcontroller.cpp \
     $$PWD/SortModel/selectionsort.cpp \
     $$PWD/SortModel/insertionsort.cpp \

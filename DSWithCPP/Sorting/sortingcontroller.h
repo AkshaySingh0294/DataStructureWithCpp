@@ -6,6 +6,7 @@
 #include "SortModel/mergesort_linkiedlistbased.h"
 #include "SortModel/mergesort_doublylinkedlist.h"
 #include "SortModel/quicksort_array.h"
+#include "SortModel/bubblesort.h"
 
 
 class SortingController

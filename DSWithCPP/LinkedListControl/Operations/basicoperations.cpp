@@ -51,6 +51,15 @@ BasicOperations::BasicOperations()
     insertionAtDLGivenNode(&dHead,&dTail,99999,13);
     showDl(dHead);
 
+    //    deleteSingleLinkedList(&sHead);
+    //    deleteDoubleLinkedList(&dHead);
+    //    showDl(dHead);
+
+    createLoopInSL(&sHead, &sTail);
+    detectLoop(&sHead);
+    showSl(sHead);
+
+
 }
 
 void BasicOperations::insertionAtDLFront(dlNode **head, int num)
@@ -109,6 +118,17 @@ void BasicOperations::insertionAtDLEnd(dlNode **head, dlNode **tail, int num)
     *tail = newnode;
 }
 
+void BasicOperations::deleteDoubleLinkedList(dlNode **head)
+{
+    dlNode *current = *head;
+    if(*head != nullptr){
+        dlNode *nextPtr = current->next;
+        delete *head;
+        *head = nullptr;
+        deleteDoubleLinkedList(&nextPtr);
+    }
+}
+
 void BasicOperations::insertionAtSlFront(node **head, int num)
 {
     node *newnode;
@@ -135,6 +155,67 @@ void BasicOperations::insertionAtSlEnd(node **head, node **tail, int num)
     }
     temp1->next = newnode;
     *tail = newnode;
+}
+
+void BasicOperations::deleteSingleLinkedList(node **ptr)
+{
+    node *current = *ptr;
+    if(*ptr != nullptr){
+        node *nextPtr = current->next;
+        delete *ptr;
+        *ptr = nullptr;
+        deleteSingleLinkedList(&nextPtr);
+    }
+}
+
+void BasicOperations::createLoopInSL(node **head, node **tail)
+{
+    node *start = *head;
+    node *end = *tail;
+    end->next = start->next->next->next;
+}
+
+void BasicOperations::detectLoop(node **head)
+{
+    //The fast pointer slow pointer method
+    node *fast, *slow;
+    fast = slow = *head;
+    fast = fast->next;
+    while(1){
+        if(slow == nullptr || fast == nullptr || fast->next == nullptr){
+            cout<<"There is no loop"<<endl;
+            break;
+        }
+        if(slow == fast){
+            cout<<"LOOP FOUND"<<endl;
+            fixLoopinSL(head);
+            break;
+        }
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+}
+
+void BasicOperations::fixLoopinSL(node **head)
+{
+    forward_list<node *> nodeList;
+    node * start = *head;
+    if(start != nullptr){
+        nodeList.push_front(start);
+        node *backPtr = start;
+        node *fronPtr = start->next;
+        while(1){
+            for(node *iterator : nodeList){
+                if(fronPtr == iterator){
+                    backPtr->next = nullptr;
+                    return;
+                }
+            }
+            backPtr = fronPtr;
+            fronPtr = fronPtr->next;
+            nodeList.push_front(backPtr);
+        }
+    }
 }
 
 void BasicOperations::showDl(dlNode *head)
