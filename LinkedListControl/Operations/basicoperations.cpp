@@ -3,7 +3,7 @@
 BasicOperations::BasicOperations()
 {
     singleOperation();
-//    doubleOperation();
+    //    doubleOperation();
 }
 
 void BasicOperations::singleOperation()
@@ -31,9 +31,10 @@ void BasicOperations::singleOperation()
     //    createLoopInSL(&sHead, &sTail);
     //    detectLoop(&sHead);
     //    palindromeCheckSLL(sHead);
-    node *ptr = sHead;
-    palindromeCheckRecursiveSSL(ptr, ptr);
+    //    palindromeCheckRecursiveSSL(sHead, sHead);
+    removeDuplicate(sHead);
     showSl(sHead);
+
 }
 
 void BasicOperations::doubleOperation()
@@ -260,6 +261,26 @@ node* BasicOperations::palindromeCheckRecursiveSSL(node *left, node *right)
         }
     }
     return left;
+}
+
+void BasicOperations::removeDuplicate(node *head)
+{
+    node *ptr, *backPtr;
+    while(head != nullptr){
+        backPtr = head;
+        ptr = head->next;
+        while(ptr != nullptr){
+            if(head->data == ptr->data){
+                backPtr->next = ptr->next;
+                delete ptr;
+                ptr = backPtr->next;
+            }else{
+                backPtr = ptr;
+                ptr = ptr->next;
+            }
+        }
+        head = head->next;
+    }
 }
 
 void BasicOperations::showDl(dlNode *head)

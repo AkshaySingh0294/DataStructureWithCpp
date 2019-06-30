@@ -29,6 +29,7 @@ public:
     void fixLoopinSL(node **head);
     void palindromeCheckSLL(node *head);
     node *palindromeCheckRecursiveSSL(node *left, node *right);
+    void removeDuplicate(node *head);
 
     //Show array
     void showDl(dlNode *head);
