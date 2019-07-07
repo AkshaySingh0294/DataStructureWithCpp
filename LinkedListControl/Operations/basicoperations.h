@@ -30,6 +30,9 @@ public:
     void palindromeCheckSLL(node *head);
     node *palindromeCheckRecursiveSSL(node *left, node *right);
     void removeDuplicate(node *head);
+    bool checkIfNodesSwapable(node *head, int number, int position, int number2, int position2);
+    void swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2);
+    int getSLLLength(node *head);
 
     //Show array
     void showDl(dlNode *head);

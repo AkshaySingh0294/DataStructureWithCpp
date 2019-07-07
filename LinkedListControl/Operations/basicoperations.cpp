@@ -32,7 +32,8 @@ void BasicOperations::singleOperation()
     //    detectLoop(&sHead);
     //    palindromeCheckSLL(sHead);
     //    palindromeCheckRecursiveSSL(sHead, sHead);
-    removeDuplicate(sHead);
+    //    removeDuplicate(sHead);
+    swapGivenNumberOfNodes(sHead,2,0,5,7);
     showSl(sHead);
 
 }
@@ -281,6 +282,82 @@ void BasicOperations::removeDuplicate(node *head)
         }
         head = head->next;
     }
+}
+
+bool BasicOperations::checkIfNodesSwapable(node *head, int number, int position, int number2, int position2)
+{
+    if(position <  0){
+        cout<<"position should be equal to or greater than 0";
+        return false;
+    }
+    int num1 = number;
+    int num2 = number2;
+    int length = getSLLLength(head);
+    int x1 = length-(position+number);
+    int x2 = length-(position2+number2);
+    if((length-(position+number)) < 0){
+        cout<<"Number 1 and Position 1 are not usable for swapping"<<endl;
+        return false;
+    }
+    if((length-(position2+number2)) < 0){
+        cout<<"Number 2 and Position 2 are not usable for swapping"<<endl;
+        return false;
+    }
+    node *array[num1];
+    array[0] = head;
+    int count = 0;
+    int iterator = 0;
+    node *ptr = head;
+    while(ptr != nullptr){
+        if(count >= position && num1 !=0 ){
+            array[iterator] = ptr;
+            ++iterator;
+            --num1;
+        }
+        if(num1 == 0){
+            break;
+        }
+        ptr = ptr->next;
+        ++count;
+    }
+    ptr = head;
+    count = 0;
+    while(ptr != nullptr){
+        if(count >= position2 && num2 !=0 ){
+            for(int i=0; i<number; i++){
+                if(array[i] == ptr){
+                    cout<<"positions of specifed values overlap eachother--------cannot swap";
+                    return false;
+                }
+            }
+            --num2;
+        }
+        if(num2 == -1){
+            break;
+        }
+        ptr = ptr->next;
+        ++count;
+    }
+    return true;
+}
+
+void BasicOperations::swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2)
+{
+    if(checkIfNodesSwapable(head,number,position,number2,position2)){
+        cout<<endl<<"Numbers are swappable";
+    }else{
+        cout<<endl<<"Number are not swappable";
+    }
+}
+
+int BasicOperations::getSLLLength(node *head)
+{
+    int count = 0;
+    while(head != nullptr){
+        ++count;
+        head = head->next;
+    }
+    return count;
 }
 
 void BasicOperations::showDl(dlNode *head)
