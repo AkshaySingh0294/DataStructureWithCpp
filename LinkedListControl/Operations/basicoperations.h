@@ -31,7 +31,7 @@ public:
     node *palindromeCheckRecursiveSSL(node *left, node *right);
     void removeDuplicate(node *head);
     bool checkIfNodesSwapable(node *head, int number, int position, int number2, int position2);
-    void swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2);
+    node *swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2);
     int getSLLLength(node *head);
 
     //Show array

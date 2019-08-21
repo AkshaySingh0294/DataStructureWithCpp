@@ -9,7 +9,7 @@ BasicOperations::BasicOperations()
 void BasicOperations::singleOperation()
 {
     slC = new SingleLinkedListCreation;
-    int array[10] = {10,9,8,7,6,6,7,8,9,10};
+    int array[10] = {1,2,3,4,5,6,7,8,9,10};
     node *sHead = new node;
     node *sTail = new node;
     sHead = sTail = nullptr;
@@ -33,9 +33,9 @@ void BasicOperations::singleOperation()
     //    palindromeCheckSLL(sHead);
     //    palindromeCheckRecursiveSSL(sHead, sHead);
     //    removeDuplicate(sHead);
-    swapGivenNumberOfNodes(sHead,2,0,5,7);
+    sHead = swapGivenNumberOfNodes(sHead,2,1,5,7); //position start with 0;
     showSl(sHead);
-
+    cout<<endl;
 }
 
 void BasicOperations::doubleOperation()
@@ -286,8 +286,12 @@ void BasicOperations::removeDuplicate(node *head)
 
 bool BasicOperations::checkIfNodesSwapable(node *head, int number, int position, int number2, int position2)
 {
-    if(position <  0){
+    if(position <  0 || position2 < 0) {
         cout<<"position should be equal to or greater than 0";
+        return false;
+    }
+    if(number <= 0 || number2 <= 0){
+        cout<<"number should be greater than 0";
         return false;
     }
     int num1 = number;
@@ -341,13 +345,77 @@ bool BasicOperations::checkIfNodesSwapable(node *head, int number, int position,
     return true;
 }
 
-void BasicOperations::swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2)
+node* BasicOperations::swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2)
 {
-    if(checkIfNodesSwapable(head,number,position,number2,position2)){
-        cout<<endl<<"Numbers are swappable";
-    }else{
-        cout<<endl<<"Number are not swappable";
+    if(position > position2){
+        int temp = position2;
+        position2 = position;
+        position = temp;
+
+        temp = number;
+        number = number2;
+        number2 = temp;
     }
+    if(!checkIfNodesSwapable(head,number,position,number2,position2)){
+        cout<<endl<<"Nodes are not swappable";
+        return head;
+    }
+
+    int pos1, num1, pos2, num2;
+    pos1 = position;
+    pos2 = position2;
+    num1 = number;
+    num2 = number2;
+
+    node *ptr2_1, *ptr2_2, *ptr2_3, *ptr2_4;
+    ptr2_1 = ptr2_2 = ptr2_3 = ptr2_4 = head;
+    node *tempPtr = new node;
+    int count = 0;
+    int iterator = 0;
+    while(iterator != position2-1){
+        ptr2_1 = ptr2_1->next;
+        ++iterator;
+    }
+    ptr2_3 = ptr2_2 = ptr2_1->next;
+    while(num2 > 1){
+        ptr2_3 = ptr2_3->next;
+        --num2;
+    }
+    ptr2_4 = ptr2_3->next;      //right side are made stable
+
+    node *ptr1_1, *ptr1_2, *ptr1_3, *ptr1_4;
+    ptr1_1 = ptr1_2 = ptr1_3 = ptr1_4 = head;
+    iterator = 0;
+    if(position != 0){
+        while(iterator != position-1){
+            ptr1_1 = ptr1_1->next;
+            ++iterator;
+        }
+    }
+    if(position == 0)
+        ptr1_3 = ptr1_2 = ptr1_1;
+    else
+        ptr1_3 = ptr1_2 = ptr1_1->next;
+    while(num1 > 1){
+        --num1;
+        ptr1_3 = ptr1_3->next;
+    }
+    ptr1_4 = ptr1_3->next;  //left side are made stable.
+
+    if(ptr1_1 == ptr1_2){
+        ptr2_3->next = ptr1_4;
+        head = ptr2_2;
+
+        ptr2_1->next = ptr1_1;
+        ptr1_3->next = ptr2_4;
+    }else{
+        ptr1_1->next = ptr2_2;
+        ptr2_3->next = ptr1_4;
+
+        ptr2_1->next = ptr1_2;
+        ptr1_3->next = ptr2_4;
+    }
+    return head;
 }
 
 int BasicOperations::getSLLLength(node *head)
