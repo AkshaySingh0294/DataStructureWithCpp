@@ -500,11 +500,6 @@ void BasicOperations::createAndGetLLIntersection()
         cout<<ptr->data<<" ";
         ptr = ptr->next;
     }
-
-
-
-
-
 }
 
 void BasicOperations::showDl(dlNode *head)
