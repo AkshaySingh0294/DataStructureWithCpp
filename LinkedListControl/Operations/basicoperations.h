@@ -33,6 +33,7 @@ public:
     bool checkIfNodesSwapable(node *head, int number, int position, int number2, int position2);
     node *swapGivenNumberOfNodes(node *head, int number, int position, int number2, int position2);
     int getSLLLength(node *head);
+    void createAndGetLLIntersection();
 
     //Show array
     void showDl(dlNode *head);

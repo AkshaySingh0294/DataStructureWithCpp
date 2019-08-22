@@ -8,33 +8,33 @@ BasicOperations::BasicOperations()
 
 void BasicOperations::singleOperation()
 {
-    slC = new SingleLinkedListCreation;
-    int array[10] = {1,2,3,4,5,6,7,8,9,10};
-    node *sHead = new node;
-    node *sTail = new node;
-    sHead = sTail = nullptr;
-    //Single linked list creation
-    for(int i : array)
-    {
-        sTail = slC->addToSll(sTail,i);
-        if(sHead == nullptr)
-        {
-            sHead = sTail;
-        }
-    }
-    showSl(sHead);
-    insertionAtSlFront(&sHead,100);
-    showSl(sHead);
-    insertionAtSlEnd(&sHead,&sTail,100);
-    showSl(sHead);
+    //    slC = new SingleLinkedListCreation;
+    //    int array[10] = {1,2,3,4,5,6,7,8,9,10};
+    //    node *sHead = new node;
+    //    node *sTail = new node;
+    //    sHead = sTail = nullptr;
+    //    //Single linked list creation
+    //    for(int i : array)
+    //    {
+    //        sTail = slC->addToSll(sTail,i);
+    //        if(sHead == nullptr)
+    //        {
+    //            sHead = sTail;
+    //        }
+    //    }
+    //    showSl(sHead);
+    //    insertionAtSlFront(&sHead,100);
+    //    showSl(sHead);
+    //    insertionAtSlEnd(&sHead,&sTail,100);
+    //    showSl(sHead);
     //    deleteSingleLinkedList(&sHead);
     //    createLoopInSL(&sHead, &sTail);
     //    detectLoop(&sHead);
     //    palindromeCheckSLL(sHead);
     //    palindromeCheckRecursiveSSL(sHead, sHead);
     //    removeDuplicate(sHead);
-    sHead = swapGivenNumberOfNodes(sHead,2,1,5,7); //position start with 0;
-    showSl(sHead);
+    //    sHead = swapGivenNumberOfNodes(sHead,2,1,5,7); //position start with 0;
+    createAndGetLLIntersection();
     cout<<endl;
 }
 
@@ -426,6 +426,85 @@ int BasicOperations::getSLLLength(node *head)
         head = head->next;
     }
     return count;
+}
+
+void BasicOperations::createAndGetLLIntersection()
+{
+    SingleLinkedListCreation *linkedlist = new SingleLinkedListCreation;
+    node *head1,*head2, *tail1, *tail2;
+    head1 = head2 = tail1 = tail2 = nullptr;
+    tail1 = linkedlist->addToSll(tail1,1);
+    head1 = tail1;
+    tail1 = linkedlist->addToSll(tail1,2);
+
+    tail2 = linkedlist->addToSll(tail2,-1);
+    head2 = tail2;
+    tail2 = linkedlist->addToSll(tail2,-2);
+
+    int array[5] = {10,11,12,13,14};
+    for(int i : array)
+    {
+        tail1 = slC->addToSll(tail1,i);
+    }
+    node* newnode = head1;
+    int counter = 0;
+    while(counter != 2){
+        newnode = newnode->next;
+        counter++;
+    }
+    tail2->next = newnode;
+    tail2 = tail1;
+    tail2 = linkedlist->addToSll(tail2,100);
+
+    cout<<"Dummy lists:"<<endl;
+    node* ptr = nullptr;
+    ptr = head1;
+    while(ptr!= tail1->next){
+        cout<<ptr->data<<" ";
+        ptr = ptr->next;
+    }
+
+    cout<<endl;
+
+    ptr = head2;
+    while(ptr!= tail2->next){
+        cout<<ptr->data<<" ";
+        ptr = ptr->next;
+    }
+
+    cout<<endl<<"Intersection list:"<<endl;
+    node* head3, *tail3;
+    head3 = tail3 = nullptr;
+    node* ptr2 = head2;
+    ptr = head1;
+    while(ptr != tail1->next){
+        ptr2 = head2;
+        while(ptr2 != tail2){
+            if(ptr == ptr2){
+                if(head3 == nullptr){
+                    head3 = tail3 = ptr;
+                }else{
+                    tail3->next = ptr;
+                    tail3 = ptr;
+                }
+                break;
+            }
+            ptr2 = ptr2->next;
+        }
+        ptr = ptr->next;
+    }
+
+
+    ptr = head3;
+    while(ptr!= tail3->next){
+        cout<<ptr->data<<" ";
+        ptr = ptr->next;
+    }
+
+
+
+
+
 }
 
 void BasicOperations::showDl(dlNode *head)
